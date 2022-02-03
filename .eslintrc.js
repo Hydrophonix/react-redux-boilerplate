@@ -156,7 +156,7 @@ module.exports = {
         // ==============================================================================================================
         // ESlint: Variable
         // ==============================================================================================================
-        "init-declarations":           2,
+        "init-declarations":           0,
         "no-catch-shadow":             2,
         "no-delete-var":               2,
         "no-label-var":                2,
@@ -189,30 +189,11 @@ module.exports = {
                 objectsInArrays: false,
             },
         ],
-        "block-spacing": 2,
-        "brace-style":   [
-            2,
-            "1tbs",
-            { allowSingleLine: true },
-        ],
-        camelcase:      0,
-        "comma-dangle": [
-            2,
-            {
-                arrays:    "always-multiline",
-                objects:   "always-multiline",
-                functions: "always-multiline",
-                imports:   "always-multiline",
-                exports:   "always-multiline",
-            },
-        ],
-        "comma-spacing": [
-            2,
-            {
-                before: false,
-                after:  true,
-            },
-        ],
+        "block-spacing":             2,
+        "brace-style":               0,
+        camelcase:                   0,
+        "comma-dangle":              0,
+        "comma-spacing":             0,
         "comma-style":               [ 2, "last" ],
         "computed-property-spacing": [ 2, "always" ],
         "consistent-this":           [ 2, "self" ],
@@ -301,7 +282,7 @@ module.exports = {
             },
         ],
         "quote-props":  [ 2, "as-needed" ],
-        semi:           2,
+        semi:           0,
         "semi-spacing": [
             2,
             {
@@ -323,26 +304,58 @@ module.exports = {
             "evt",
             "cb",
         ],
-        "id-length":                         0,
-        "implicit-arrow-linebreak":          2,
+        "id-length":                                      0,
+        "implicit-arrow-linebreak":                       2,
         // ==============================================================================================================
         // ESlint: Node.js & CommonJS
         // ==============================================================================================================
-        "handle-callback-err":               [ 2, "error" ],
-        "callback-return":                   0,
-        "global-require":                    2,
-        "no-buffer-constructor":             2,
-        "no-mixed-requires":                 2,
-        "no-new-require":                    2,
-        "no-path-concat":                    2,
-        "no-process-exit":                   2,
-        "no-restricted-modules":             2,
-        "no-sync":                           0,
+        "handle-callback-err":                            [ 2, "error" ],
+        "callback-return":                                0,
+        "global-require":                                 2,
+        "no-buffer-constructor":                          2,
+        "no-mixed-requires":                              2,
+        "no-new-require":                                 2,
+        "no-path-concat":                                 2,
+        "no-process-exit":                                2,
+        "no-restricted-modules":                          2,
+        "no-sync":                                        0,
+        // ==============================================================================================================
+        // ESlint: ECMAScript 6
+        // ==============================================================================================================
+        "arrow-body-style":                               0,
+        "arrow-parens":                                   [ 2, "always" ],
         // ==============================================================================================================
         // Plugin: Typescript
         // ==============================================================================================================
-        "@typescript-eslint/no-unused-vars": 1,
-        "@typescript-eslint/indent":         [
+        "@typescript-eslint/no-unused-vars":              1,
+        "@typescript-eslint/member-delimiter-style":      2,
+        "@typescript-eslint/no-extra-non-null-assertion": 2,
+        "@typescript-eslint/semi":                        [ 2 ],
+        "@typescript-eslint/type-annotation-spacing":     2,
+        "@typescript-eslint/comma-spacing":               [
+            2,
+            {
+                before: false,
+                after:  true,
+            },
+        ],
+        "@typescript-eslint/comma-dangle": [
+            2,
+            {
+                arrays:    "always-multiline",
+                objects:   "always-multiline",
+                functions: "always-multiline",
+                imports:   "always-multiline",
+                exports:   "always-multiline",
+                enums:     "always-multiline",
+            },
+        ],
+        "@typescript-eslint/brace-style": [
+            2,
+            "1tbs",
+            { allowSingleLine: true },
+        ],
+        "@typescript-eslint/indent": [
             2,
             4,
             {
@@ -352,21 +365,27 @@ module.exports = {
             },
         ],
         // ==============================================================================================================
-        // ESlint: ECMAScript 6
+        // Plugin: Align import / Import
         // ==============================================================================================================
-        "arrow-body-style":                           0,
-        "arrow-parens":                               [ 2, "always" ],
+        "align-import/align-import":    [ 2,  "always" ],
+        "import/prefer-default-export": 0,
+        "import/no-unresolved":         0,
+        "import/extensions":            0,
+        "import/order":                 [
+            2,
+            {
+                groups: [
+                    "builtin",
+                    "external",
+                    [ "internal", "index", "sibling", "parent" ],
+                ],
+            },
+        ],
         // ==============================================================================================================
         // Plugin: React hooks
         // ==============================================================================================================
         "react-hooks/rules-of-hooks":                 2,
         "react-hooks/exhaustive-deps":                2,
-        // ==============================================================================================================
-        // Plugin: Align import
-        // ==============================================================================================================
-        "align-import/align-import":                  [ 2,  "always" ],
-        // "react-hooks/exhaustive-deps":                2,
-        // ==============================================================================================================
         // ==============================================================================================================
         // Plugin: React core
         // ==============================================================================================================

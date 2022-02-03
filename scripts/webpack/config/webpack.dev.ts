@@ -11,13 +11,12 @@ export const getDevConfig = () => {
     return merge(
         getCommonConfig(),
         {
-            mode:    "development",
-            stats:   "verbose",
-            devtool: "eval-cheap-module-source-map",
-            // entry:     [ "webpack-hot-middleware/client?reload=true&quiet=true" ],
-            // devServer: {
-            //     hot: true,
-            // },
+            mode:                  "development",
+            stats:                 "none",
+            devtool:               "eval-cheap-module-source-map",
+            infrastructureLogging: {
+                level: "none",
+            },
         },
         // modules.defineEnvVariables(false),
         // modules.loadImagesDev(),

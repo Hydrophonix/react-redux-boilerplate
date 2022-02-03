@@ -28,27 +28,30 @@ const compiler = webpack(getDevConfig());
             return null;
         }
 
-        const server = new DevServer(compiler, {
-            // memory-fs
-            host:               HOST,
-            port:               choosenPort,
-            historyApiFallback: true,
-            hot:                true,
-            overlay:            true,
-            quiet:              true,
-            noInfo:             true,
-            stats:              "none",
-            clientLogLevel:     "silent",
-        });
+        const server = new DevServer(
+            {
+                host:               HOST,
+                port:               choosenPort,
+                historyApiFallback: true,
+                hot:                true,
+                client:             {
+                    logging:  "none",
+                    overlay:  true,
+                    progress: true,
+                },
+            },
+            compiler,
+        );
 
-        server.listen(choosenPort, HOST, () => {
-            console.log(
-                `${chalk.greenBright(
-                    "→ Server listening on",
-                )} ${chalk.blueBright(`http://${HOST}:${choosenPort}`)}`,
-            );
-            openBrowser(`http://${HOST}:${choosenPort}`);
-        });
+        await server.start();
+
+        console.log(
+            `${chalk.greenBright(
+                "→ Server listening on",
+            )} ${chalk.blueBright(`http://${HOST}:${choosenPort}`)}`,
+        );
+
+        openBrowser(`http://${HOST}:${choosenPort}`);
     } catch (error) {
         console.log(chalk.redBright("→ Error!"));
         console.error(error.message || error);

@@ -2,19 +2,11 @@
 import { render } from "react-dom";
 
 // React App
-import { Root } from "./containers/Root";
-
-// Init
-// import { initIconsLibrary } from "./assets";
-
-// initIconsLibrary();
+import { Root } from "./containers/root";
 
 const rootNode = document.getElementById("root");
 
-render(
-    <Root />,
-    rootNode,
-);
+render(<Root />, rootNode);
 
 // if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
 //     window.addEventListener("load", () => {
