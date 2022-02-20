@@ -1,20 +1,22 @@
 // Core
-import { Box, Button, Typography } from "@mui/material";
-import { FC }                      from "react";
-import { useHistory }              from "react-router";
-import { SignUpForm }              from "./sign-up-form";
+import { Button, Typography } from "@mui/material";
+import { FC }                 from "react";
+import { useHistory }         from "react-router";
+
+// Components
+import { SignUpForm } from "./sign-up-form";
+
+// Elements
+import { PageContainer, PageHeader } from "../../elements";
 
 export const SignUp: FC = () => {
     const { push } = useHistory();
 
     return (
-        <Box>
-            <Typography
-                align = "center"
-                marginBottom = { 2 }
-                variant = "h4">
+        <PageContainer>
+            <PageHeader>
                 Sign Up
-            </Typography>
+            </PageHeader>
 
             <SignUpForm />
 
@@ -29,6 +31,6 @@ export const SignUp: FC = () => {
                 onClick = { () => push("/signin") }>
                 SIGN IN
             </Button>
-        </Box>
+        </PageContainer>
     );
 };

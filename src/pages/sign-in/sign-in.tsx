@@ -1,13 +1,16 @@
 // Core
-import { Box, Button, Typography } from "@mui/material";
-import { FC, useEffect }           from "react";
-import { useHistory }              from "react-router";
+import { Button, Typography } from "@mui/material";
+import { FC, useEffect }      from "react";
+import { useHistory }         from "react-router";
 
 // Components
 import { SignInError } from "./sign-in-error";
 import { SignInForm }  from "./sign-in-form";
 
-// State
+// Elements
+import { PageContainer, PageHeader } from "../../elements";
+
+// Instruments
 import { auth, useAppDispatch } from "../../state";
 
 export const SignIn: FC = () => {
@@ -21,13 +24,10 @@ export const SignIn: FC = () => {
 
 
     return (
-        <Box>
-            <Typography
-                align = "center"
-                marginBottom = { 2 }
-                variant = "h4">
+        <PageContainer>
+            <PageHeader>
                 Sign In
-            </Typography>
+            </PageHeader>
 
             <SignInError />
             <SignInForm />
@@ -43,6 +43,6 @@ export const SignIn: FC = () => {
                 onClick = { () => push("/signup") }>
                 Sign Up
             </Button>
-        </Box>
+        </PageContainer>
     );
 };

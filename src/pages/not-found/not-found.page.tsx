@@ -1,8 +1,13 @@
 // Core
-import { FC } from "react";
+import { FC }                        from "react";
+import { PageContainer, PageHeader } from "../../elements";
 
 export const NotFoundPage: FC = () => {
     return (
-        <div>OOOPS! NOT FOUND</div>
+        <PageContainer>
+            <PageHeader>
+                OOOPS! NOT FOUND
+            </PageHeader>
+        </PageContainer>
     );
 };

@@ -17,7 +17,7 @@ export const PrivateRoute: FC<PrivateRouteProps> = ({ children, path }) => {
             path = { path }>
             {isLoggedIn
                 ? children
-                : <Redirect to = "/login"/>
+                : <Redirect to = "/signin"/>
             }
         </Route>
     );

@@ -1,18 +1,22 @@
 // Core
-import { FC }                          from "react";
-import { Box, IconButton, Typography } from "@mui/material";
-import { ArrowBack }                   from "@mui/icons-material";
-import { useHistory }                  from "react-router";
+import { FC }              from "react";
+import { Box, IconButton } from "@mui/material";
+import { ArrowBack }       from "@mui/icons-material";
+import { useHistory }      from "react-router";
 
-interface PageHeaderProps {
-    text: string;
-}
+// Elements
+import { PageHeader } from "../elements";
 
-export const PageHeader: FC<PageHeaderProps> = ({ text }) => {
+export const PageBackHeader: FC = ({ children }) => {
     const { goBack } = useHistory();
 
     return (
-        <Box sx = {{ position: "relative" }}>
+        <Box sx = {{
+            position:       "relative",
+            display:        "flex",
+            width:          "100%",
+            justifyContent: "center",
+        }}>
             <IconButton
                 sx = {{
                     position: "absolute",
@@ -22,11 +26,10 @@ export const PageHeader: FC<PageHeaderProps> = ({ text }) => {
                 onClick = { () => goBack() }>
                 <ArrowBack />
             </IconButton>
-            <Typography
-                align = "center"
-                variant = "h4">
-                {text}
-            </Typography>
+
+            <PageHeader>
+                {children}
+            </PageHeader>
         </Box>
     );
 };

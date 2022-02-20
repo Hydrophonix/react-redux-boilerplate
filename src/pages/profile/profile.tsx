@@ -1,6 +1,11 @@
 // Core
-import { Typography, Box, Grid, Button, Card }  from "@mui/material";
-import { FC }                                   from "react";
+import { Box, Grid, Button, Card } from "@mui/material";
+import { FC }                      from "react";
+
+// Elements
+import { PageHeader } from "../../elements";
+
+// Instruments
 import { auth, useAppDispatch, useAppSelector } from "../../state";
 
 export const Profile: FC = () => {
@@ -11,49 +16,62 @@ export const Profile: FC = () => {
 
     return (
         <Card sx = {{ minWidth: "50%", padding: 2 }}>
-            <Typography
-                align = "center"
-                sx = {{ marginBottom: 2 }}
-                variant = "h4">
+            <PageHeader>
                 Profile
-            </Typography>
+            </PageHeader>
+
             <Grid
                 container
-                spacing = { 2 }>
+                spacing = { 2 }
+                sx = {{ paddingX: 2 }}>
                 <Grid
                     item
                     xs = { 4 }>
                     Username:
                 </Grid>
+
                 <Grid
                     item
                     xs = { 8 }>
                     {user?.username}
                 </Grid>
+
                 <Grid
                     item
                     xs = { 4 }>
                     Role:
                 </Grid>
+
                 <Grid
                     item
                     xs = { 8 }>
                     {user?.role}
                 </Grid>
+
                 <Grid
                     item
                     xs = { 4 }>
                     Email:
                 </Grid>
+
                 <Grid
                     item
                     xs = { 8 }>
                     {user?.email}
                 </Grid>
             </Grid>
-            <Button onClick = { handleSignOut }>
-                Sign Out
-            </Button>
+
+            <Box sx = {{
+                display:        "flex",
+                justifyContent: "center",
+                padding:        2,
+            }}>
+                <Button
+                    variant = "contained"
+                    onClick = { handleSignOut }>
+                    Sign Out
+                </Button>
+            </Box>
         </Card>
     );
 };

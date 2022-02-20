@@ -3,7 +3,8 @@ import { Box, Button, TextField }         from "@mui/material";
 import { FC, FormEventHandler, useState } from "react";
 
 // Components
-import { PageHeader }                            from "../../components/page-header";
+import { PageBackHeader }                        from "../../components/page-header";
+import { PageContainer }                         from "../../elements";
 import { useAppDispatch, useAppSelector, users } from "../../state";
 
 export const CreateUserPage: FC = () => {
@@ -27,8 +28,11 @@ export const CreateUserPage: FC = () => {
     };
 
     return (
-        <Box sx = {{ width: "100%" }}>
-            <PageHeader text = "Create User"/>
+        <PageContainer>
+            <PageBackHeader>
+                Create User
+            </PageBackHeader>
+
             <Box
                 autoComplete = "off"
                 component = "form"
@@ -81,6 +85,6 @@ export const CreateUserPage: FC = () => {
                     Create User
                 </Button>
             </Box>
-        </Box>
+        </PageContainer>
     );
 };

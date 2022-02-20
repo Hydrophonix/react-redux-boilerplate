@@ -1,12 +1,12 @@
 // Core
 import { Backdrop, Box, Button, CircularProgress, TextField } from "@mui/material";
 import { FC, FormEventHandler, useEffect, useState }          from "react";
-import { useHistory, useLocation, useParams }                 from "react-router";
+import { useLocation, useParams }                             from "react-router";
 import { createStructuredSelector }                           from "reselect";
-
 // Components
-import { PageHeader } from "../../components";
-
+import { PageBackHeader } from "../../components";
+// Elements
+import { PageContainer } from "../../elements";
 // Instruments
 import { useAppDispatch, useAppSelector, users } from "../../state";
 import { User }                                  from "../../state/domains/users/users.types";
@@ -17,7 +17,6 @@ interface EditUserPageParams {
 
 export const EditUserPage: FC = () => {
     const { state } = useLocation<User|null>();
-    const { push } = useHistory();
     const { userId } = useParams<EditUserPageParams>();
     const dispatch = useAppDispatch();
     const { editUser, isLoading } = useAppSelector(createStructuredSelector({
@@ -50,13 +49,14 @@ export const EditUserPage: FC = () => {
                 },
             }),
         );
-
-        push("/users");
     };
 
     return (
-        <Box sx = {{ width: "100%" }}>
-            <PageHeader text = { `Edit User ID:${userId}` }/>
+        <PageContainer>
+            <PageBackHeader>
+                Edit User ID:${userId}
+            </PageBackHeader>
+
             <Box
                 autoComplete = "off"
                 component = "form"
@@ -74,6 +74,7 @@ export const EditUserPage: FC = () => {
                     variant = "outlined"
                     onChange = { (event) => setUsername(event.target.value) }
                 />
+
                 <TextField
                     required
                     label = "Email"
@@ -83,6 +84,7 @@ export const EditUserPage: FC = () => {
                     variant = "outlined"
                     onChange = { (event) => setEmail(event.target.value) }
                 />
+
                 <Button
                     sx = {{ marginTop: 3 }}
                     type = "submit"
@@ -90,9 +92,10 @@ export const EditUserPage: FC = () => {
                     Edit User
                 </Button>
             </Box>
-            <Backdrop open = { isLoading }>
+
+            <Backdrop open = { isLoading || !user }>
                 <CircularProgress />
             </Backdrop>
-        </Box>
+        </PageContainer>
     );
 };

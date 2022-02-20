@@ -19,7 +19,10 @@ export const BackdropContainer: FC<BackdropContainerProps> = ({ open, sx, childr
             { ...boxProps }>
             <Backdrop
                 open = { open }
-                sx = {{ position: "absolute" }}
+                sx = {{
+                    position: "absolute",
+                    zIndex:   (theme) => theme.zIndex.drawer + 1,
+                }}
             />
             {children}
         </Box>

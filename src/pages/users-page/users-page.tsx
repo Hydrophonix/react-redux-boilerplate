@@ -1,7 +1,10 @@
 // Core
-import { Button, Paper, Typography } from "@mui/material";
-import { push }                      from "connected-react-router";
-import { FC }                        from "react";
+import { Button } from "@mui/material";
+import { push }   from "connected-react-router";
+import { FC }     from "react";
+
+// Elements
+import { PageContainer, PageHeader } from "../../elements";
 
 // Instruments
 import { useAppDispatch } from "../../state";
@@ -11,19 +14,10 @@ export const UsersPage: FC = () => {
     const dispatch = useAppDispatch();
 
     return (
-        <Paper sx = {{
-            display:       "flex",
-            flexDirection: "column",
-            alignItems:    "center",
-            paddingY:      2,
-            paddingX:      5,
-        }}>
-            <Typography
-                align = "center"
-                sx = {{ marginBottom: 2 }}
-                variant = "h4">
+        <PageContainer>
+            <PageHeader>
                 Users
-            </Typography>
+            </PageHeader>
 
             <UserTable />
 
@@ -34,6 +28,6 @@ export const UsersPage: FC = () => {
                 onClick = { () => dispatch(push("/users/create")) }>
                 CREATE USER
             </Button>
-        </Paper>
+        </PageContainer>
     );
 };
