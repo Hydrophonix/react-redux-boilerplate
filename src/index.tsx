@@ -1,12 +1,13 @@
 // Core
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 
 // React App
 import { Root } from "./containers/root";
 
 const rootNode = document.getElementById("root");
+const root = createRoot(rootNode!);
 
-render(<Root />, rootNode);
+root.render(<Root />);
 
 // if (process.env.NODE_ENV === "production" && "serviceWorker" in navigator) {
 //     window.addEventListener("load", () => {

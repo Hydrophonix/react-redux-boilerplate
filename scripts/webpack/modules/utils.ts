@@ -7,7 +7,7 @@ import {
 } from "webpack";
 import ReactRefreshWebpackPlugin   from "@pmmmwh/react-refresh-webpack-plugin";
 import WebpackBar                  from "webpackbar";
-import FriendlyErrorsWebpackPlugin from "friendly-errors-webpack-plugin";
+import FriendlyErrorsWebpackPlugin from "@soda/friendly-errors-webpack-plugin";
 import { BundleAnalyzerPlugin }    from "webpack-bundle-analyzer";
 // import dotenv from 'dotenv';
 

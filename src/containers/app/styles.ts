@@ -4,6 +4,7 @@ import {
     AppBarProps as MuiAppBarProps,
     styled,
 } from "@mui/material";
+import { deepPurple } from "@mui/material/colors";
 
 export const sideBarWidth = 240;
 
@@ -14,7 +15,8 @@ interface AppBarProps extends MuiAppBarProps {
 export const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
 })<AppBarProps>(({ theme, open }) => ({
-    transition: theme.transitions.create([ "margin", "width" ], {
+    backgroundColor: deepPurple.A700,
+    transition:      theme.transitions.create([ "margin", "width" ], {
         easing:   theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
     }),

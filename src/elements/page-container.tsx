@@ -1,8 +1,8 @@
 // Core
-import { Paper } from "@mui/material";
-import { FC }    from "react";
+import { Paper }                 from "@mui/material";
+import { FC, PropsWithChildren } from "react";
 
-export const PageContainer: FC = ({ children }) => {
+export const PageContainer: FC<PropsWithChildren<{}>> = ({ children }) => {
     return (
         <Paper sx = {{
             display:       "flex",

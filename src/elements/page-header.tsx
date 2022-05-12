@@ -1,8 +1,8 @@
 // Core
-import { Typography } from "@mui/material";
-import { FC }         from "react";
+import { Typography }            from "@mui/material";
+import { FC, PropsWithChildren } from "react";
 
-export const PageHeader: FC = ({ children }) => {
+export const PageHeader: FC<PropsWithChildren<{}>> = ({ children }) => {
     return (
         <Typography
             align = "center"
@@ -10,6 +10,5 @@ export const PageHeader: FC = ({ children }) => {
             variant = "h4">
             {children}
         </Typography>
-
     );
 };

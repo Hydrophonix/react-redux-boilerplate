@@ -1,7 +1,7 @@
 // Core
 import { Button, Typography } from "@mui/material";
 import { FC }                 from "react";
-import { useHistory }         from "react-router";
+import { useNavigate }        from "react-router-dom";
 
 // Components
 import { SignUpForm } from "./sign-up-form";
@@ -10,7 +10,7 @@ import { SignUpForm } from "./sign-up-form";
 import { PageContainer, PageHeader } from "../../elements";
 
 export const SignUp: FC = () => {
-    const { push } = useHistory();
+    const navigate = useNavigate();
 
     return (
         <PageContainer>
@@ -28,7 +28,7 @@ export const SignUp: FC = () => {
 
             <Button
                 sx = {{ marginTop: 1, width: "100%" }}
-                onClick = { () => push("/signin") }>
+                onClick = { () => navigate("/signin") }>
                 SIGN IN
             </Button>
         </PageContainer>

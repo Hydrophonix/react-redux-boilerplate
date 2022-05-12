@@ -1,6 +1,6 @@
 // Core
-import { PayloadAction }                    from "@reduxjs/toolkit";
-import { call, delay, put, SagaReturnType } from "redux-saga/effects";
+import { PayloadAction }             from "@reduxjs/toolkit";
+import { call, put, SagaReturnType } from "redux-saga/effects";
 
 // Instruments
 import { catchErrorWorker }                  from "../../../catch-error.worker";
@@ -10,7 +10,6 @@ import { users }                             from "../users.slice";
 import { FindUsersPayload, FindUsersParams } from "../users.types";
 
 export function* callFindUsersWorker({ payload }: PayloadAction<FindUsersPayload|undefined>) {
-    yield delay(2000);
     try {
         const { skip, limit, order, sort } = yield* appSelect((state) => state.users);
         const params: FindUsersParams = {

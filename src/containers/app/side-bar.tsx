@@ -13,7 +13,7 @@ import {
     ListItemIcon,
     ListItemText,
 } from "@mui/material";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 // State
 import { useAppDispatch, useAppSelector, ui } from "../../state";
@@ -22,7 +22,7 @@ import { useAppDispatch, useAppSelector, ui } from "../../state";
 import { DrawerHeader, sideBarWidth } from "./styles";
 
 export const SideBar: FC = () => {
-    const { push } = useHistory();
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const isMenuOpen = useAppSelector((store) => store.ui.isMenuOpen);
 
@@ -50,7 +50,7 @@ export const SideBar: FC = () => {
             <List>
                 <ListItem
                     button
-                    onClick = { () => push("/") }>
+                    onClick = { () => navigate("/") }>
                     <ListItemIcon>
                         <Home />
                     </ListItemIcon>
@@ -60,7 +60,7 @@ export const SideBar: FC = () => {
                 </ListItem>
                 <ListItem
                     button
-                    onClick = { () => push("/feed") }>
+                    onClick = { () => navigate("/feed") }>
                     <ListItemIcon>
                         <Home />
                     </ListItemIcon>
@@ -70,7 +70,7 @@ export const SideBar: FC = () => {
                 </ListItem>
                 <ListItem
                     button
-                    onClick = { () => push("/users") }>
+                    onClick = { () => navigate("/users") }>
                     <ListItemIcon>
                         <Home />
                     </ListItemIcon>

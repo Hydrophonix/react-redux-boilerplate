@@ -1,9 +1,8 @@
 // Core
-import { FC, useEffect }            from "react";
-import { Table, TableBody }         from "@mui/material";
-import { createStructuredSelector } from "reselect";
-import { push }                     from "connected-react-router";
+import { FC, useEffect }    from "react";
+import { Table, TableBody } from "@mui/material";
 
+import { useNavigate } from "react-router-dom";
 // Components
 import { BackdropContainer } from "../../../components";
 import { UserTableHead }     from "./user-table-head";
@@ -17,16 +16,13 @@ import { useAppDispatch, useAppSelector, users } from "../../../state";
 import { User } from "../../../state/domains/users/users.types";
 
 export const UserTable: FC = () => {
+    const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const {
         list,
         isLoading,
         skip,
-    } = useAppSelector(createStructuredSelector({
-        list:      (state) => state.users.list,
-        isLoading: (state) => state.users.isLoading,
-        skip:      (state) => state.users.skip,
-    }));
+    } = useAppSelector((state) => state.users);
 
 
     useEffect(() => {
@@ -39,7 +35,9 @@ export const UserTable: FC = () => {
     };
 
     const handleRedirectToUserEditPage = (user: User) => {
-        dispatch(push(`/users/${user.id}`, user));
+        navigate(`/users/${user.id}`, {
+            state: user,
+        });
     };
 
 

@@ -1,12 +1,10 @@
 // Core
-import { configureStore }   from "@reduxjs/toolkit";
-import { routerMiddleware } from "connected-react-router";
+import { configureStore } from "@reduxjs/toolkit";
 
 // Instruments
 import { rootReducer }                      from "./rootReducer";
 import { rootSaga }                         from "./rootSaga";
 import { loggerMiddleware, sagaMiddleware } from "./middlewares";
-import { history }                          from "./history";
 
 // TODO: update webpack config
 const isDev = true;
@@ -19,7 +17,6 @@ export const store = configureStore({
 
         middleware.push(
             sagaMiddleware,
-            routerMiddleware(history),
         );
 
         isDev && middleware.push(loggerMiddleware);

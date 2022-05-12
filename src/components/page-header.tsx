@@ -1,14 +1,14 @@
 // Core
-import { FC }              from "react";
-import { Box, IconButton } from "@mui/material";
-import { ArrowBack }       from "@mui/icons-material";
-import { useHistory }      from "react-router";
+import { FC, PropsWithChildren } from "react";
+import { Box, IconButton }       from "@mui/material";
+import { ArrowBack }             from "@mui/icons-material";
+import { useNavigate }           from "react-router-dom";
 
 // Elements
 import { PageHeader } from "../elements";
 
-export const PageBackHeader: FC = ({ children }) => {
-    const { goBack } = useHistory();
+export const PageBackHeader: FC<PropsWithChildren<void>> = ({ children }) => {
+    const navigate = useNavigate();
 
     return (
         <Box sx = {{
@@ -23,7 +23,7 @@ export const PageBackHeader: FC = ({ children }) => {
                     left:     0,
                     top:      0,
                 }}
-                onClick = { () => goBack() }>
+                onClick = { () => navigate(-1) }>
                 <ArrowBack />
             </IconButton>
 

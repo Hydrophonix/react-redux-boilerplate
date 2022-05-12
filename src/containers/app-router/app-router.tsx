@@ -1,7 +1,7 @@
 // Core
 import { CircularProgress } from "@mui/material";
 import { FC }               from "react";
-import { Route, Switch }    from "react-router";
+import { Routes, Route }    from "react-router-dom";
 
 // Pages
 import {
@@ -15,11 +15,11 @@ import {
     UsersPage,
 } from "../../pages";
 import { useAppSelector } from "../../state";
-import { AdminRoute }     from "./admin-route";
+import { RequireNotAuth } from "./reqiure-not-auth";
 
-// Instruments
-import { AuthRedirectRoute } from "./auth-redirect-route";
-import { PrivateRoute }      from "./private-route";
+// Components
+import { RequireAdmin } from "./require-admin";
+import { RequireAuth }  from "./require-auth";
 
 export const AppRouter: FC = () => {
     const isLoading = useAppSelector((state) => state.auth.isLoading);
@@ -31,36 +31,69 @@ export const AppRouter: FC = () => {
     }
 
     return (
-        <Switch>
-            <PrivateRoute path = "/profile">
-                <Profile />
-            </PrivateRoute>
-
-            <AuthRedirectRoute path = "/signup">
-                <SignUp />
-            </AuthRedirectRoute>
-            <AuthRedirectRoute path = "/signin">
-                <SignIn />
-            </AuthRedirectRoute>
-
-            <AdminRoute path = "/users/create">
-                <CreateUserPage />
-            </AdminRoute>
-            <AdminRoute path = "/users/:userId">
-                <EditUserPage />
-            </AdminRoute>
-            <AdminRoute path = "/users">
-                <UsersPage />
-            </AdminRoute>
-
+        <Routes>
             <Route
-                exact
-                path = "/">
-                <HomePage />
-            </Route>
-            <Route path = "*">
-                <NotFoundPage />
-            </Route>
-        </Switch>
+                element = {
+                    <RequireAuth navigateTo = "/signin">
+                        <Profile />
+                    </RequireAuth>
+                }
+                path = "/profile"
+            />
+            <Route
+                element = {
+                    <RequireNotAuth navigateTo = "/">
+                        <SignUp />
+                    </RequireNotAuth>
+                }
+                path = "/signup"
+            />
+            <Route
+                element = {
+                    <RequireNotAuth navigateTo = "/">
+                        <SignIn />
+                    </RequireNotAuth>
+                }
+                path = "/signin"
+            />
+            <Route
+                element = { (
+                    <RequireAuth navigateTo = "/signin">
+                        <RequireAdmin navigateTo = "/not-found">
+                            <UsersPage />
+                        </RequireAdmin>
+                    </RequireAuth>
+                ) }
+                path = "/users"
+            />
+            <Route
+                element = { (
+                    <RequireAuth navigateTo = "/signin">
+                        <RequireAdmin navigateTo = "/not-found">
+                            <EditUserPage />
+                        </RequireAdmin>
+                    </RequireAuth>
+                ) }
+                path = "/users/:userId"
+            />
+            <Route
+                element = { (
+                    <RequireAuth navigateTo = "/signin">
+                        <RequireAdmin navigateTo = "/not-found">
+                            <CreateUserPage />
+                        </RequireAdmin>
+                    </RequireAuth>
+                ) }
+                path = "/users/create"
+            />
+            <Route
+                element = { <HomePage /> }
+                path = "/"
+            />
+            <Route
+                element = { <NotFoundPage /> }
+                path = "*"
+            />
+        </Routes>
     );
 };

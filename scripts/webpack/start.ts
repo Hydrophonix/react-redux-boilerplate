@@ -35,7 +35,7 @@ const compiler = webpack(getDevConfig());
                 historyApiFallback: true,
                 hot:                true,
                 client:             {
-                    logging:  "none",
+                    logging:  "warn",
                     overlay:  true,
                     progress: true,
                 },

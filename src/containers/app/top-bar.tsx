@@ -9,7 +9,7 @@ import {
     CircularProgress,
 } from "@mui/material";
 import { AccountCircle, Menu } from "@mui/icons-material";
-import { useHistory }          from "react-router";
+import { useNavigate }         from "react-router-dom";
 
 // State
 import { useAppDispatch, useAppSelector, auth, ui } from "../../state";
@@ -19,7 +19,7 @@ import { AppBar } from "./styles";
 
 export const TopBar: FC = () => {
     const dispatch = useAppDispatch();
-    const { push } = useHistory();
+    const navigate = useNavigate();
     const { isMenuOpen, isLoading, isLoggedIn } = useAppSelector(
         createStructuredSelector({
             isMenuOpen: (state) => state.ui.isMenuOpen,
@@ -28,18 +28,21 @@ export const TopBar: FC = () => {
         }),
     );
 
+
     useEffect(() => {
         dispatch(auth.getCurrentUser());
     }, [ dispatch ]);
 
+
     const handleOpenMenu = () => dispatch(ui.openMenu());
     const handleAccountClick = () => {
         if (isLoggedIn) {
-            push("/profile");
+            navigate("/profile");
         } else {
-            push("/signup");
+            navigate("/signup");
         }
     };
+
 
     return (
         <AppBar

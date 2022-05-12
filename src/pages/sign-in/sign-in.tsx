@@ -1,7 +1,7 @@
 // Core
 import { Button, Typography } from "@mui/material";
 import { FC, useEffect }      from "react";
-import { useHistory }         from "react-router";
+import { useNavigate }        from "react-router-dom";
 
 // Components
 import { SignInError } from "./sign-in-error";
@@ -15,7 +15,7 @@ import { auth, useAppDispatch } from "../../state";
 
 export const SignIn: FC = () => {
     const dispatch = useAppDispatch();
-    const { push } = useHistory();
+    const navigate = useNavigate();
 
 
     useEffect(() => () => {
@@ -40,7 +40,7 @@ export const SignIn: FC = () => {
 
             <Button
                 sx = {{ marginTop: 1, width: "100%" }}
-                onClick = { () => push("/signup") }>
+                onClick = { () => navigate("/signup") }>
                 Sign Up
             </Button>
         </PageContainer>

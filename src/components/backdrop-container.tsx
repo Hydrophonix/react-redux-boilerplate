@@ -1,7 +1,7 @@
 // Core
 import { Backdrop, Box, BoxProps, Theme } from "@mui/material";
 import { SxProps }                        from "@mui/system";
-import { FC }                             from "react";
+import { FC, PropsWithChildren }          from "react";
 
 interface BackdropContainerProps {
     open: boolean;
@@ -9,7 +9,12 @@ interface BackdropContainerProps {
     boxProps?: BoxProps;
 }
 
-export const BackdropContainer: FC<BackdropContainerProps> = ({ open, sx, children, ...boxProps }) => {
+export const BackdropContainer: FC<PropsWithChildren<BackdropContainerProps>> = ({
+    open,
+    sx,
+    children,
+    ...boxProps
+}) => {
     return (
         <Box
             sx = {{
