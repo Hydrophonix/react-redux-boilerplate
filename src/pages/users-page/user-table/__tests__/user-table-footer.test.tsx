@@ -1,7 +1,5 @@
-// Core
 // Test
 import { render, screen, fireEvent, TestRootState } from "test/lib";
-import { userStub }                                 from "test/mocks";
 
 // Instruments
 import { UserTableFooter }   from "../user-table-footer";
