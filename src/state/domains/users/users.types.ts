@@ -1,3 +1,5 @@
+import { ServerError } from "../../axios-client";
+
 export interface User {
     id: string;
     username: string;
@@ -22,6 +24,7 @@ export interface UsersState {
     list: User[];
     isLoading: boolean;
     edit: User | null;
+    error: ServerError | null;
     // pagination
     skip: number;
     limit: number;

@@ -3,8 +3,9 @@ import { PayloadAction }             from "@reduxjs/toolkit";
 import { call, put, SagaReturnType } from "redux-saga/effects";
 
 // Instruments
-import { updateUserAPI }    from "../users.api";
-import { users }            from "../users.slice";
+import { normalizeError }    from "../../../utils";
+import { updateUserAPI }     from "../users.api";
+import { users }             from "../users.slice";
 import { UpdateUserPayload } from "../users.types";
 
 export function* callUpdateUserWorker({ payload }: PayloadAction<UpdateUserPayload>) {
@@ -21,6 +22,8 @@ export function* callUpdateUserWorker({ payload }: PayloadAction<UpdateUserPaylo
 
         yield put(users.updateSuccess(data));
     } catch (error) {
-        yield put(users.updateError());
+        const serverError = normalizeError(error);
+
+        yield put(users.updateError(serverError));
     }
 }

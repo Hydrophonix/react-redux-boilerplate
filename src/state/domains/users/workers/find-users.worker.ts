@@ -3,7 +3,6 @@ import { PayloadAction }             from "@reduxjs/toolkit";
 import { call, put, SagaReturnType } from "redux-saga/effects";
 
 // Instruments
-import { catchErrorWorker }                  from "../../../catch-error.worker";
 import { appSelect }                         from "../../../hooks";
 import { findUsersAPI }                      from "../users.api";
 import { users }                             from "../users.slice";
@@ -23,6 +22,6 @@ export function* callFindUsersWorker({ payload }: PayloadAction<FindUsersPayload
 
         yield put(users.findSuccess(data));
     } catch (error) {
-        yield* catchErrorWorker(error, users.findError);
+        yield put(users.findError());
     }
 }

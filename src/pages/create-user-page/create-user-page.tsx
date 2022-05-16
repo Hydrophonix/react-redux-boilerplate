@@ -9,7 +9,7 @@ import { useAppDispatch, useAppSelector, users } from "../../state";
 
 export const CreateUserPage: FC = () => {
     const dispatch = useAppDispatch();
-    const serverError = useAppSelector((state) => state.auth.error);
+    const { error, isLoading } = useAppSelector((state) => state.users);
 
     const [ username, setUsername ] = useState("");
     const [ email, setEmail ] = useState("");
@@ -40,13 +40,16 @@ export const CreateUserPage: FC = () => {
                     display:       "flex",
                     alignItems:    "center",
                     flexDirection: "column",
+                    width:         350,
                 }}
                 onSubmit = { handleFormSubmit }>
 
                 <TextField
+                    fullWidth
                     required
-                    error = { Boolean(serverError?.validation?.username) }
-                    helperText = { serverError?.validation?.username }
+                    disabled = { isLoading }
+                    error = { Boolean(error?.validation?.username) }
+                    helperText = { error?.validation?.username }
                     label = "Username"
                     margin = "dense"
                     value = { username }
@@ -55,9 +58,11 @@ export const CreateUserPage: FC = () => {
                 />
 
                 <TextField
+                    fullWidth
                     required
-                    error = { Boolean(serverError?.validation?.email) }
-                    helperText = { serverError?.validation?.email }
+                    disabled = { isLoading }
+                    error = { Boolean(error?.validation?.email) }
+                    helperText = { error?.validation?.email }
                     label = "Email"
                     margin = "dense"
                     type = "email"
@@ -67,9 +72,11 @@ export const CreateUserPage: FC = () => {
                 />
 
                 <TextField
+                    fullWidth
                     required
-                    error = { Boolean(serverError?.validation?.password) }
-                    helperText = { serverError?.validation?.password }
+                    disabled = { isLoading }
+                    error = { Boolean(error?.validation?.password) }
+                    helperText = { error?.validation?.password }
                     label = "Password"
                     margin = "dense"
                     type = "password"
@@ -79,6 +86,7 @@ export const CreateUserPage: FC = () => {
                 />
 
                 <Button
+                    disabled = { isLoading }
                     sx = {{ marginTop: 3 }}
                     type = "submit"
                     variant = "contained">

@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 // Core
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ServerError }                from "../../axios-client";
 
 // Instruments
 import {
@@ -18,6 +19,7 @@ const initialState: UsersState = {
     isLoading: false,
     list:      [],
     edit:      null,
+    error:     null,
     // pagination
     skip:      0,
     limit:     10,
@@ -65,25 +67,29 @@ export const { actions: users, reducer: usersReducer } = createSlice({
 
         create(state, _action: PayloadAction<CreateUserPayload>) {
             state.isLoading = true;
+            state.error = null;
         },
         createSuccess(state, { payload }: PayloadAction<User>) {
             state.isLoading = false;
             state.list.push(payload);
         },
-        createError(state) {
+        createError(state, { payload }: PayloadAction<ServerError>) {
             state.isLoading = false;
+            state.error = payload;
         },
 
 
         update(state, _action: PayloadAction<UpdateUserPayload>) {
             state.isLoading = true;
+            state.error = null;
         },
         updateSuccess(state, { payload }: PayloadAction<User>) {
             state.isLoading = false;
             state.list.forEach((user) => user.id === payload.id ? payload : user);
         },
-        updateError(state) {
+        updateError(state, { payload }: PayloadAction<ServerError>) {
             state.isLoading = false;
+            state.error = payload;
         },
 
 

@@ -3,10 +3,9 @@ import { PayloadAction }                   from "@reduxjs/toolkit";
 import { call, put, SagaReturnType, take } from "redux-saga/effects";
 
 // Instruments
-import { ui }               from "../../ui";
-import { catchErrorWorker } from "../../../catch-error.worker";
-import { deleteUserAPI }    from "../users.api";
-import { users }            from "../users.slice";
+import { ui }            from "../../ui";
+import { deleteUserAPI } from "../users.api";
+import { users }         from "../users.slice";
 
 export function* callDeleteUserWorker({ payload }: PayloadAction<string>) {
     yield put(ui.openConfirmationalModal({
@@ -28,6 +27,6 @@ export function* callDeleteUserWorker({ payload }: PayloadAction<string>) {
 
         yield put(users.deleteSuccess(payload));
     } catch (error) {
-        yield* catchErrorWorker(error, users.deleteError);
+        yield put(users.deleteError());
     }
 }

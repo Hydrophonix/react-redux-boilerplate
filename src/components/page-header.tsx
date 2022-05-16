@@ -7,7 +7,7 @@ import { useNavigate }           from "react-router-dom";
 // Elements
 import { PageHeader } from "../elements";
 
-export const PageBackHeader: FC<PropsWithChildren<void>> = ({ children }) => {
+export const PageBackHeader: FC<PropsWithChildren<{}>> = ({ children }) => {
     const navigate = useNavigate();
 
     return (
