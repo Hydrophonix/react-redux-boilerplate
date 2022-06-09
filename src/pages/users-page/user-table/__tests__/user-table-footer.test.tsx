@@ -20,6 +20,7 @@ describe("<UserTableFooter />", () => {
             page:      3,
             skip:      10,
             sort:      SortBy.id,
+            error:     null,
         },
     };
 

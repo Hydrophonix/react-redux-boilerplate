@@ -16,9 +16,11 @@ export const store = configureStore({
         const middleware = getDefaultMiddleware({ thunk: false });
 
         middleware.push(
+            //@ts-ignore
             sagaMiddleware,
         );
 
+        //@ts-ignore
         isDev && middleware.push(loggerMiddleware);
 
         return middleware;

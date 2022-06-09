@@ -6,7 +6,7 @@ import { TransitionProps }               from "@mui/material/transitions";
 export const Transition = forwardRef(
     (
         props: TransitionProps & {
-            children?: ReactElement<any, any>;
+            children: ReactElement<any, any>;
         },
         ref: Ref<unknown>,
     ) => (
