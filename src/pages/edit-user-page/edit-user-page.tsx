@@ -1,36 +1,36 @@
 // Core
 import { Backdrop, Box, Button, CircularProgress, TextField } from "@mui/material";
 import { FC, FormEventHandler, useEffect, useState }          from "react";
-import { useLocation, useParams }                             from "react-router";
+import { useLocation, useParams }                             from "react-router-dom";
 import { createStructuredSelector }                           from "reselect";
+
 // Components
 import { PageBackHeader } from "../../components";
+
 // Elements
 import { PageContainer } from "../../elements";
+
 // Instruments
 import { useAppDispatch, useAppSelector, users } from "../../state";
 import { User }                                  from "../../state/domains/users/users.types";
 
-interface EditUserPageParams {
-    userId: string;
-}
 
 export const EditUserPage: FC = () => {
-    const { state } = useLocation<User|null>();
-    const { userId } = useParams<EditUserPageParams>();
+    const { state } = useLocation();
+    const { userId } = useParams();
     const dispatch = useAppDispatch();
     const { editUser, isLoading } = useAppSelector(createStructuredSelector({
         editUser:  (state) => state.users.edit,
         isLoading: (state) => state.users.isLoading,
     }));
 
-    const user = state || editUser;
+    const user = (state || editUser) as User;
     const [ username, setUsername ] = useState("");
     const [ email, setEmail ] = useState("");
 
     useEffect(() => {
         if (userId !== user?.id) {
-            dispatch(users.get(userId));
+            dispatch(users.get(userId!));
         } else {
             setUsername(user.username);
             setEmail(user.email);
@@ -42,7 +42,7 @@ export const EditUserPage: FC = () => {
 
         dispatch(
             users.update({
-                id:   user!.id,
+                id:   user.id,
                 data: {
                     email,
                     username,
